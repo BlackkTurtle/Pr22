@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-22_05</title>
+    <script>
+        function convertCurrency() {
+      const amount = document.getElementById("amount").value;
+      const fromCurrency = document.getElementById("fromCurrency").value;
+      const toCurrency = document.getElementById("toCurrency").value;
+    
+      const url = `https://api.currencylayer.com/live?access_key=YOUR_ACCESS_KEY&currencies=${fromCurrency},${toCurrency}&format=1`;
+    
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const exchangeRate = data.quotes[`${fromCurrency}${toCurrency}`];
+    
+          const result = amount * exchangeRate;
+    
+          document.getElementById("result").textContent = `${result.toFixed(2)} ${toCurrency}`;
+        })
+        .catch(error => console.error(error));
+    }
+    
+    </script> 
+</head>
+<body>
+    <label for="amount">Сума:</label>
+    <input type="number" id="amount" name="amount" required>
+    <label for="fromCurrency">З:</label>
+    <select id="fromCurrency" name="fromCurrency" required>
+      <option value="USD">Долар США (USD)</option>
+      <option value="EUR">Євро (EUR)</option>
+      <option value="GBP">Фунт стерлінгів (GBP)</option>
+      <option value="JPY">Єна (JPY)</option>
+    </select>
+    <label for="toCurrency">У:</label>
+    <select id="toCurrency" name="toCurrency" required>
+      <option value="UAH">Гривня (UAH)</option>
+      <option value="USD">Долар США (USD)</option>
+      <option value="EUR">Євро (EUR)</option>
+      <option value="GBP">Фунт стерлінгів (GBP)</option>
+      <option value="JPY">Єна (JPY)</option>
+    </select>
+    <button type="button" onclick="convertCurrency()">Обчислити</button>
+    <p id="result"></p>
+   
+</body>
+</html>
+

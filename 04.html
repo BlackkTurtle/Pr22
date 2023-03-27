@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-22_04</title>
+    <script>
+		window.onload = function() {
+			const citySelect = document.getElementById("citySelect");
+			const addBtn = document.getElementById("addBtn");
+			const cityInput = document.getElementById("cityInput");
+			const resultParagraph = document.getElementById("result");
+
+			addBtn.onclick = function() {
+				const cityName = cityInput.value.trim();
+				if (cityName) {
+					const option = document.createElement("option");
+					option.value = cityName;
+					option.text = cityName;
+					citySelect.add(option);
+					cityInput.value = "";
+				}
+			};
+
+			citySelect.onchange = function() {
+				resultParagraph.textContent = "You selected " + citySelect.value + ".";
+			};
+		};
+	</script>
+</head>
+<body>
+	<h1>City Selector</h1>
+	<select id="citySelect"></select>
+	<br>
+	<input type="text" id="cityInput" placeholder="Enter a city name">
+	<button id="addBtn">Add</button>
+	<p id="result"></p>
+</body>
+</html>
+

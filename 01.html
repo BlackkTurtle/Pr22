@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-22_01</title>
+  </head>
+  <body>
+    <form>
+      <label>Введіть текст:</label>
+      <input type="text" id="inputText">
+    </form>
+    <style>
+      #inputText {
+  border: 2px solid green;
+}
+
+#inputText.invalid {
+  border-color: red;
+}
+
+    </style>
+    <script>
+      const inputText = document.getElementById("inputText");
+
+inputText.addEventListener("input", function() {
+  if (inputText.value.length >= 4 && inputText.value.length <= 9) {
+    inputText.classList.remove("invalid");
+  } else {
+    inputText.classList.add("invalid");
+  }
+});
+
+    </script>
+  </body>
+</html>
+

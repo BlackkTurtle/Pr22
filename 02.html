@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Практична_робота-22_02</title>
+  </head>
+  <body>
+    <table id="employeesTable">
+        <thead>
+          <tr>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <th>Зарплата</th>
+            <th>Стать</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <form id="addEmployeeForm">
+            <label for="firstNameInput">Ім'я:</label>
+            <input type="text" id="firstNameInput" required>
+            
+            <label for="lastNameInput">Прізвище:</label>
+            <input type="text" id="lastNameInput" required>
+            
+            <label for="salaryInput">Зарплата:</label>
+            <input type="number" id="salaryInput" required>
+            
+            <label for="genderSelect">Стать:</label>
+            <select id="genderSelect" required>
+              <option value="">Оберіть стать</option>
+              <option value="male">Чоловік</option>
+              <option value="female">Жінка</option>
+            </select>
+            
+            <button type="submit">Додати працівника</button>
+          </form>
+          
+      </table>
+      
+    <style>
+     #employeesTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#employeesTable th,
+#employeesTable td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+    </style>
+    <script>
+    const employeesTable = document.getElementById("employeesTable");
+const addEmployeeForm = document.getElementById("addEmployeeForm");
+
+addEmployeeForm.addEventListener("submit", function(event) {
+  event.preventDefault(); 
+  
+  const firstName = document.getElementById("firstNameInput").value;
+  const lastName = document.getElementById("lastNameInput").value;
+  const salary = document.getElementById("salaryInput").value;
+  const gender = document.getElementById("genderSelect").value;
+  
+  const newRow = employeesTable.insertRow();
+  
+  const firstNameCell = newRow.insertCell();
+  firstNameCell.textContent = firstName;
+  
+  const lastNameCell = newRow.insertCell();
+  lastNameCell.textContent = lastName;
+  
+  const salaryCell = newRow.insertCell();
+  salaryCell.textContent = salary;
+  
+  const genderCell = newRow.insertCell();
+  genderCell.textContent = gender === "male" ? "Чоловік" : "Жінка";
+  
+  addEmployeeForm.reset();
+});
+
+    </script>
+  </body>
+</html>
+
